@@ -28,16 +28,16 @@ namespace AudioSwitcher.UI.Commands
             IsEnabled = argument.State == AudioDeviceState.Active && !IsChecked;
         }
 
-        private bool IsDefaultDevice(AudioDeviceDefaultState defaultState)
+        private bool IsDefaultDevice(AudioDeviceDefaultStatuses defaultState)
         {
             switch (_role)
             {
                 case AudioDeviceRole.Communications:
-                    return defaultState.IsSet(AudioDeviceDefaultState.Communications);
+                    return defaultState.IsSet(AudioDeviceDefaultStatuses.Communications);
 
                 default:
                     Debug.Assert(_role == AudioDeviceRole.Multimedia);
-                    return defaultState.IsSet(AudioDeviceDefaultState.Multimedia);
+                    return defaultState.IsSet(AudioDeviceDefaultStatuses.Multimedia);
             }
         }
 

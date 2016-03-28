@@ -34,7 +34,8 @@ namespace AudioSwitcher.Drawing
 			if (deviceImage == null)
 				return null;
 
-			Image overlayImage = GetOverlayImage(deviceMananger, device);
+			var defaultStatuses = deviceMananger.CalculateDeviceDefaultStatuses(device);
+			Image overlayImage = GetOverlayImage(defaultStatuses, device.State);
 			if (overlayImage == null)
 				return deviceImage;
 
@@ -76,20 +77,19 @@ namespace AudioSwitcher.Drawing
 			return icon;
 		}
 
-		private static Image GetOverlayImage(AudioDeviceManager deviceManager, AudioDevice device)
+		private static Image GetOverlayImage(AudioDeviceDefaultStatuses defaultStatuses, AudioDeviceState state)
 		{
-			var defaultState = CalculateDeviceDefaultState(deviceManager, device);
-			if (defaultState.IsSet(AudioDeviceDefaultState.Multimedia))
+			if (defaultStatuses.IsSet(AudioDeviceDefaultStatuses.Multimedia))
 			{   // Sound control panel shows the same icon between all and multimedia
 				return Icons.DefaultMultimediaDevice;
 			}
 
-			if (defaultState.IsSet(AudioDeviceDefaultState.Communications))
+			if (defaultStatuses.IsSet(AudioDeviceDefaultStatuses.Communications))
 			{
 				return Icons.DefaultCommunicationsDevice;
 			}
 
-			switch (device.State)
+			switch (state)
 			{
 				case AudioDeviceState.Disabled:
 					return Icons.Disabled;
@@ -102,23 +102,6 @@ namespace AudioSwitcher.Drawing
 			}
 
 			return null;
-		}
-
-		public static AudioDeviceDefaultState CalculateDeviceDefaultState(AudioDeviceManager deviceManager, AudioDevice device)
-		{
-			AudioDeviceDefaultState state = AudioDeviceDefaultState.None;
-
-			if (deviceManager.IsDefaultAudioDevice(device, AudioDeviceRole.Multimedia))
-			{
-				state |= AudioDeviceDefaultState.Multimedia;
-			}
-
-			if (deviceManager.IsDefaultAudioDevice(device, AudioDeviceRole.Communications))
-			{
-				state |= AudioDeviceDefaultState.Communications;
-			}
-
-			return state;
 		}
 	}
 }

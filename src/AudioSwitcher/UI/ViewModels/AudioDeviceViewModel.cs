@@ -24,7 +24,7 @@ namespace AudioSwitcher.UI.ViewModels
             get { return _device; }
         }
 
-        public AudioDeviceDefaultState DefaultState
+        public AudioDeviceDefaultStatuses DefaultState
         {
             get;
             private set;
@@ -74,7 +74,7 @@ namespace AudioSwitcher.UI.ViewModels
 
         public void UpdateStatus(AudioDeviceManagerFacade deviceManager)
         {
-            DefaultState = DeviceImage.CalculateDeviceDefaultState(deviceManager.GetUnderlyingManager(), _device);
+            DefaultState = deviceManager.GetUnderlyingManager().CalculateDeviceDefaultStatuses(_device);
             Kind = _device.Kind;
             State = _device.State;
             IsVisible = CalculateIsVisible();
@@ -137,17 +137,17 @@ namespace AudioSwitcher.UI.ViewModels
             // default state first, and only then fall back to the actual
             // device's state if it's not a default device.
 
-            if (DefaultState.IsSet(AudioDeviceDefaultState.All))
+            if (DefaultState.IsSet(AudioDeviceDefaultStatuses.All))
             {
                 return Resources.DeviceState_DefaultDevice;
             }
 
-            if (DefaultState.IsSet(AudioDeviceDefaultState.Multimedia))
+            if (DefaultState.IsSet(AudioDeviceDefaultStatuses.Multimedia))
             {
                 return Resources.DeviceState_DefaultMultimediaDevice;
             }
 
-            if (DefaultState.IsSet(AudioDeviceDefaultState.Communications))
+            if (DefaultState.IsSet(AudioDeviceDefaultStatuses.Communications))
             {
                 return Resources.DeviceState_DefaultCommunicationsDevice;
             }

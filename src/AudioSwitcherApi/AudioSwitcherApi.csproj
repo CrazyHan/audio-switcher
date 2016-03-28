@@ -72,7 +72,7 @@
     <Compile Include="Audio\Interop\MMAudio\PropertyStoreProperty.cs" />
     <Compile Include="Audio\Interop\MMAudio\PropVariant.cs" />
     <Compile Include="Audio\Interop\MMAudio\Internal\StorageAccessMode.cs" />
-    <Compile Include="Drawing\AudioDeviceDefaultState.cs" />
+    <Compile Include="Audio\AudioDeviceDefaultStatuses.cs" />
     <Compile Include="Drawing\DeviceImage.cs" />
     <Compile Include="Drawing\Internal\DpiServices.cs" />
     <Compile Include="Drawing\Internal\DrawingServices.cs" />

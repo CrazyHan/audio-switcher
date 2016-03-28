@@ -126,6 +126,23 @@ namespace AudioSwitcher.Audio
             throw Marshal.GetExceptionForHR(hr);
         }
 
+        public AudioDeviceDefaultStatuses CalculateDeviceDefaultStatuses(AudioDevice device)
+        {
+            AudioDeviceDefaultStatuses state = AudioDeviceDefaultStatuses.None;
+
+            if (IsDefaultAudioDevice(device, AudioDeviceRole.Multimedia))
+            {
+                state |= AudioDeviceDefaultStatuses.Multimedia;
+            }
+
+            if (IsDefaultAudioDevice(device, AudioDeviceRole.Communications))
+            {
+                state |= AudioDeviceDefaultStatuses.Communications;
+            }
+
+            return state;
+        }
+
         public AudioDevice GetDevice(string id)
         {
             if (id == null)

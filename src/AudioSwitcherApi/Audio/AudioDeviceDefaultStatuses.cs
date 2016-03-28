@@ -3,10 +3,10 @@
 // -----------------------------------------------------------------------
 using System;
 
-namespace AudioSwitcher.Drawing
+namespace AudioSwitcher.Audio
 {
     [Flags]
-    public enum AudioDeviceDefaultState
+    public enum AudioDeviceDefaultStatuses
     {
         None = 0,
         Multimedia = 1,
@@ -14,9 +14,9 @@ namespace AudioSwitcher.Drawing
         All = Multimedia | Communications,
     }
 
-    public static class AudioDeviceDefaultStateExtensions
-    {
-        public static bool IsSet(this AudioDeviceDefaultState state, AudioDeviceDefaultState flag)
+    public static class AudioDeviceDefaultStatusesExtensions
+	{
+        public static bool IsSet(this AudioDeviceDefaultStatuses state, AudioDeviceDefaultStatuses flag)
         {
             return (state & flag) == flag;
         }
