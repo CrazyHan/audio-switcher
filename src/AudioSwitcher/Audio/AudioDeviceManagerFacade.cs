@@ -25,10 +25,6 @@
 */
 using System;
 using System.ComponentModel.Composition;
-using System.Runtime.InteropServices;
-using System.Threading;
-using AudioSwitcher.Audio.Interop;
-using AudioSwitcher.Interop;
 
 namespace AudioSwitcher.Audio
 {
