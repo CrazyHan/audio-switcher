@@ -7,9 +7,9 @@ using System.IO;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using AudioSwitcher.IO;
-using AudioSwitcher.Presentation.Drawing.Interop;
+using AudioSwitcher.Drawing.Interop;
 
-namespace AudioSwitcher.Presentation.Drawing
+namespace AudioSwitcher.Drawing
 {
     /// <summary>
     /// Provides information about a givin icon.

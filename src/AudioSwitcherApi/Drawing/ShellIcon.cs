@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 
-namespace AudioSwitcher.Presentation.Drawing
+namespace AudioSwitcher.Drawing
 {
     public class ShellIcon
     {

@@ -9,9 +9,9 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using AudioSwitcher.IO;
-using AudioSwitcher.Presentation.Drawing.Interop;
+using AudioSwitcher.Drawing.Interop;
 
-namespace AudioSwitcher.Presentation.Drawing
+namespace AudioSwitcher.Drawing
 {
     /// <summary>
     /// Get icon resources (RT_GROUP_ICON and RT_ICON) from an executable module (either a .dll or an .exe file).

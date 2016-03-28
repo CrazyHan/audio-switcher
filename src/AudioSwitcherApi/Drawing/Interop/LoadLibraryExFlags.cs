@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------
 using System;
 
-namespace AudioSwitcher.Presentation.Drawing.Interop
+namespace AudioSwitcher.Drawing.Interop
 {
     [Flags]
     internal enum LoadLibraryExFlags : int

@@ -6,7 +6,7 @@ using BYTE = System.Byte;
 using WORD = System.Int16;
 using DWORD = System.Int32;
 
-namespace AudioSwitcher.Presentation.Drawing
+namespace AudioSwitcher.Drawing
 {
     [StructLayout(LayoutKind.Sequential, Size = 16)]
     internal struct IconDirEntry

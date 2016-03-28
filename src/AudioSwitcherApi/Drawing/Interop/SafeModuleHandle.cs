@@ -4,7 +4,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace AudioSwitcher.Presentation.Drawing.Interop
+namespace AudioSwitcher.Drawing.Interop
 {
     internal class SafeModuleHandle : SafeHandle
     {

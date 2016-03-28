@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.Drawing;
 using AudioSwitcher.Presentation.UI;
+using AudioSwitcher.Drawing;
 
 namespace AudioSwitcher.UI.ViewModels
 {

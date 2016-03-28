@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------
 using System;
 
-namespace AudioSwitcher.Presentation.Drawing.Interop
+namespace AudioSwitcher.Drawing.Interop
 {
     internal enum ResourceTypes : int
     {

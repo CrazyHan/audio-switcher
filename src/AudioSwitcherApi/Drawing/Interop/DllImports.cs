@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using AudioSwitcher.Audio.Interop;
 using AudioSwitcher.Interop;
 
-namespace AudioSwitcher.Presentation.Drawing.Interop
+namespace AudioSwitcher.Drawing.Interop
 {
     internal class DllImports
     {

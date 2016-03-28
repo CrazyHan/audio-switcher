@@ -4,7 +4,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace AudioSwitcher.Presentation.Drawing
+namespace AudioSwitcher.Drawing
 {
     /// <summary>
     /// Represents a resource name (either integer resource or string resource).
