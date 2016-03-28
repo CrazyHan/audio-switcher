@@ -92,7 +92,6 @@
     <Compile Include="ComponentModel\ILifetime`2.cs" />
     <Compile Include="ComponentModel\ILifetime.cs" />
     <Compile Include="ComponentModel\IPriorityMetadata.cs" />
-    <Compile Include="Presentation\Drawing\DrawingServices.cs" />
     <Compile Include="Presentation\IPresenter.cs" />
     <Compile Include="Presentation\NonModalPresenter.cs" />
     <Compile Include="Presentation\PresenterAttribute.cs" />
@@ -105,8 +104,12 @@
     <Compile Include="ComponentModel\ObservableObject.cs" />
     <Compile Include="Presentation\CommandModel\Command.cs" />
     <Compile Include="Presentation\CommandModel\CommandAttribute.cs" />
-    <Compile Include="Presentation\UI\DpiServices.cs" />
     <Compile Include="Presentation\UI\Renderer\DeviceToolStripNativeRender.cs" />
+    <Compile Include="Resources\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="StringComparers.cs" />
     <Compile Include="UI\Commands\CommandId.cs" />
     <Compile Include="ApplicationModel\IApplication.cs" />
@@ -121,7 +124,6 @@
     <Compile Include="UI\Commands\NoDevicesCommand.cs" />
     <Compile Include="UI\Presenters\NotificationIconPresenter.cs" />
     <Compile Include="UI\Presenters\PresenterId.cs" />
-    <Compile Include="UI\ViewModels\AudioDeviceDefaultState.cs" />
     <Compile Include="UI\ViewModels\AudioDeviceViewModel.cs" />
     <Compile Include="ApplicationModel\AudioSwitcherApp.cs" />
     <Compile Include="Presentation\UI\ToolStripItemCommandBinding.cs" />
@@ -172,11 +174,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Resources\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -203,24 +200,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Images\Disabled_16x16.png" />
-    <None Include="Resources\Images\Unplugged_16x16.png" />
     <None Include="Resources\Images\NotificationArea.ico" />
-    <None Include="Resources\Images\DefaultCommunicationsDevice_16x16.png" />
-    <None Include="Resources\Images\DefaultMultimediaDevice_16x16.png" />
     <None Include="Resources\Images\Executable.ico" />
-    <None Include="Resources\Images\PlaybackDevice_16x16.png" />
-    <None Include="Resources\Images\RecordingDevice_16x16.png" />
-    <None Include="Resources\Images\NotPresent_16x16.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AudioSwitcherApi\AudioSwitcherApi.csproj">
       <Project>{5a31fba5-0bfe-4845-8730-98636542c546}</Project>
       <Name>AudioSwitcherApi</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images\FallbackDevice.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

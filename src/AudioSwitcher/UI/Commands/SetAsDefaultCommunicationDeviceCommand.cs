@@ -16,7 +16,7 @@ namespace AudioSwitcher.UI.Commands
             : base(manager, AudioDeviceRole.Communications)
         {
             Text = Resources.SetAsDefaultComunicationDevice;
-            Image = Resources.DefaultCommunicationsDevice;
+            Image = Icons.DefaultCommunicationsDevice;
         }
     }
 }

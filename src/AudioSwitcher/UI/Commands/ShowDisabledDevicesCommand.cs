@@ -15,7 +15,7 @@ namespace AudioSwitcher.UI.Commands
         public ShowDisabledDevicesCommand()
         {
             Text = Resources.ShowDisabledDevices;
-            Image = Resources.Disabled;
+            Image = Icons.Disabled;
         }
 
         public override void Refresh()

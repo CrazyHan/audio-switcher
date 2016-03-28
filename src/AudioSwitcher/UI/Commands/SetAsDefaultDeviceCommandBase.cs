@@ -7,6 +7,7 @@ using System.Linq;
 using AudioSwitcher.Audio;
 using AudioSwitcher.Presentation.CommandModel;
 using AudioSwitcher.UI.ViewModels;
+using AudioSwitcher.Drawing;
 
 namespace AudioSwitcher.UI.Commands
 {

@@ -5,7 +5,6 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using AudioSwitcher.Audio;
-using AudioSwitcher.Presentation.Drawing;
 using AudioSwitcher.Presentation.UI;
 using AudioSwitcher.Drawing;
 
@@ -13,8 +12,6 @@ namespace AudioSwitcher.UI.ViewModels
 {
     internal class AudioDeviceViewModel
     {
-        private static readonly Size IconSize = DpiServices.Scale(new Size(48, 48));
-
         private readonly AudioDevice _device;
 
         public AudioDeviceViewModel(AudioDevice device)
@@ -77,7 +74,7 @@ namespace AudioSwitcher.UI.ViewModels
 
         public void UpdateStatus(AudioDeviceManagerFacade deviceManager)
         {
-            DefaultState = CalculateDeviceDefaultState(deviceManager);
+            DefaultState = DeviceImage.CalculateDeviceDefaultState(deviceManager.GetUnderlyingManager(), _device);
             Kind = _device.Kind;
             State = _device.State;
             IsVisible = CalculateIsVisible();
@@ -89,10 +86,10 @@ namespace AudioSwitcher.UI.ViewModels
                 FriendlyName = TryGetOrDefault(_device.TryDeviceFriendlyName, FriendlyName);
                 DeviceStateFriendlyName = GetDeviceStateFriendlyName();
 
-                string iconPath;
-                if (_device.TryGetDeviceClassIconPath(out iconPath))
+                Image image;
+                if (DeviceImage.TryGetImage(deviceManager.GetUnderlyingManager(), _device,out image))
                 {
-                    Image = GetImage(iconPath);
+                    Image = image;
                 }
             }
         }
@@ -171,98 +168,6 @@ namespace AudioSwitcher.UI.ViewModels
             }
 
             return String.Empty;
-        }
-
-        private Image GetImage(string iconPath)
-        {
-            Image deviceImage = GetDeviceImage(iconPath);
-            if (deviceImage == null)
-                return null;
-
-            Image overlayImage = GetOverlayImage();
-            if (overlayImage == null)
-                return deviceImage;
-
-            using (deviceImage)
-            using (overlayImage)
-            {
-                // Makes a copy
-                return DrawingServices.CreateOverlayedImage(deviceImage, overlayImage, deviceImage.Size);
-            }
-        }
-
-        private Image GetDeviceImage(string iconPath)
-        {
-            using (Icon icon = GetIconFromDeviceIconPath(iconPath))
-            {
-                if (icon == null)
-                    return null;
-
-                Image image = icon.ToBitmap();
-                if (State == AudioDeviceState.Active)
-                    return image;
-
-                using (image)
-                {
-                    return ToolStripRenderer.CreateDisabledImage(image);
-                }
-            }
-        }
-
-        private Icon GetIconFromDeviceIconPath(string iconPath)
-        {
-            if (String.IsNullOrEmpty(iconPath))
-                return null;
-
-            Icon icon;
-            if (String.IsNullOrEmpty(iconPath) || !ShellIcon.TryExtractIconByIdOrIndex(iconPath, IconSize, out icon))
-                return new Icon(Resources.FallbackDevice, IconSize);
-
-            return icon;
-        }
-
-        private Image GetOverlayImage()
-        {
-            if (DefaultState.IsSet(AudioDeviceDefaultState.Multimedia))
-            {   // Sound control panel shows the same icon between all and multimedia
-                return Resources.DefaultMultimediaDevice;
-            }
-
-            if (DefaultState.IsSet(AudioDeviceDefaultState.Communications))
-            {
-                return Resources.DefaultCommunicationsDevice;
-            }
-
-            switch (State)
-            {
-                case AudioDeviceState.Disabled:
-                    return Resources.Disabled;
-
-                case AudioDeviceState.NotPresent:
-                    return Resources.NotPresent;
-
-                case AudioDeviceState.Unplugged:
-                    return Resources.Unplugged;
-            }
-
-            return null;
-        }
-
-        private AudioDeviceDefaultState CalculateDeviceDefaultState(AudioDeviceManagerFacade deviceManager)
-        {
-            AudioDeviceDefaultState state = AudioDeviceDefaultState.None;
-
-            if (deviceManager.IsDefaultAudioDevice(_device, AudioDeviceRole.Multimedia))
-            {
-                state |= AudioDeviceDefaultState.Multimedia;
-            }
-
-            if (deviceManager.IsDefaultAudioDevice(_device, AudioDeviceRole.Communications))
-            {
-                state |= AudioDeviceDefaultState.Communications;
-            }
-
-            return state;
         }
 
         private static string TryGetOrDefault(TryDelegate getter, string defaultValue)

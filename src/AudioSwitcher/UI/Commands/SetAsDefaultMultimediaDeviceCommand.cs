@@ -16,7 +16,7 @@ namespace AudioSwitcher.UI.Commands
             : base(manager, AudioDeviceRole.Multimedia)
         {
             Text = Resources.SetAsDefaultMultimediaDevice;
-            Image = Resources.DefaultMultimediaDevice;
+            Image = Icons.DefaultMultimediaDevice;
         }
     }
 }

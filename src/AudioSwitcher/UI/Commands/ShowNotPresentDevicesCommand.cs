@@ -14,7 +14,7 @@ namespace AudioSwitcher.UI.Commands
         public ShowNotPresentDevicesCommand()
         {
             Text = Resources.ShowNotPresentDevices;
-            Image = Resources.NotPresent;
+            Image = Icons.NotPresent;
         }
 
         public override void Refresh()

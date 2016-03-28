@@ -93,6 +93,11 @@ namespace AudioSwitcher.Audio
             return _audioDeviceManager.GetDevice(id);
         }
 
+        public AudioDeviceManager GetUnderlyingManager()
+        {
+            return _audioDeviceManager;
+        }
+
         public void Dispose()
         {
             _audioDeviceManager.Dispose();

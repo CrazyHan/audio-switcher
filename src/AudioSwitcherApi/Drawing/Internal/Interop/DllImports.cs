@@ -36,5 +36,14 @@ namespace AudioSwitcher.Drawing.Interop
 
         [DllImport(ExternalDll.User32, SetLastError = true, ExactSpelling = true)]
         public static extern int LookupIconIdFromDirectoryEx(IntPtr presbits, bool fIcon, int cxDesired, int cyDesired, LookupIconIdFromDirectoryExFlags Flags);
+
+        [DllImport(ExternalDll.User32)]
+        public static extern IntPtr GetDC(IntPtr hWnd);
+
+        [DllImport(ExternalDll.User32)]
+        public static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hDC);
+
+        [DllImport(ExternalDll.Gdi32)]
+        public static extern int GetDeviceCaps(IntPtr hDC, int nIndex);
     }
 }

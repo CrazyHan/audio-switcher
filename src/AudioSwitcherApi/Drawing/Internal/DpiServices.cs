@@ -3,9 +3,9 @@
 // -----------------------------------------------------------------------
 using System;
 using System.Drawing;
-using AudioSwitcher.Presentation.UI.Interop;
+using AudioSwitcher.Drawing.Interop;
 
-namespace AudioSwitcher.Presentation.UI
+namespace AudioSwitcher.Drawing
 {
     internal static class DpiServices
     {

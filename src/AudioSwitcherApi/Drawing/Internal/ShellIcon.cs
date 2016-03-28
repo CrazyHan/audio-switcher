@@ -8,7 +8,7 @@ using System.IO;
 
 namespace AudioSwitcher.Drawing
 {
-    public class ShellIcon
+    internal class ShellIcon
     {
         public static bool TryExtractIconByIdOrIndex(string fileNameAndIdOrIndex, Size size, out Icon icon)
         {

@@ -4,7 +4,7 @@
 using System;
 using System.Drawing;
 
-namespace AudioSwitcher.Presentation.Drawing
+namespace AudioSwitcher.Drawing
 {
     internal static class DrawingServices
     {

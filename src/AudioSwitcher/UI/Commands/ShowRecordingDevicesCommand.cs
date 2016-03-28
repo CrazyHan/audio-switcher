@@ -14,7 +14,7 @@ namespace AudioSwitcher.UI.Commands
         public ShowRecordingDevicesCommand()
         {
             Text = Resources.ShowRecordingDevices;
-            Image = Resources.RecordingDevice;
+            Image = Icons.RecordingDevice;
         }
 
         public override void Refresh()

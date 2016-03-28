@@ -14,7 +14,7 @@ namespace AudioSwitcher.UI.Commands
         public ShowPlaybackDevicesCommand()
         {
             Text = Resources.ShowPlaybackDevices;
-            Image = Resources.PlaybackDevice;
+            Image = Icons.PlaybackDevice;
         }
 
         public override void Refresh()
