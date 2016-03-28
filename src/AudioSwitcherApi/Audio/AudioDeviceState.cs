@@ -29,7 +29,7 @@ namespace AudioSwitcher.Audio
     /// Device State
     /// </summary>
     [Flags]
-    internal enum AudioDeviceState
+    public enum AudioDeviceState
     {
         /// <summary>
         /// DEVICE_STATE_ACTIVE

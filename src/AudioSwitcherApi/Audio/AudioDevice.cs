@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 
 namespace AudioSwitcher.Audio
 {
-    internal class AudioDevice
+    public class AudioDevice
     {
         private readonly IMMDevice _underlyingDevice;
         private PropertyStore _propertyStore;

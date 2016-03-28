@@ -27,7 +27,7 @@ using AudioSwitcher.Audio.Interop;
 
 namespace AudioSwitcher.Audio
 {
-    internal class AudioDeviceCollection : IEnumerable<AudioDevice>
+    public class AudioDeviceCollection : IEnumerable<AudioDevice>
     {
         private readonly IMMDeviceCollection _underlyingCollection;
 

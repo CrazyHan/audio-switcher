@@ -33,206 +33,73 @@ using AudioSwitcher.Interop;
 namespace AudioSwitcher.Audio
 {
     [Export(typeof(AudioDeviceManager))]
-    internal class AudioDeviceManager : IMMNotificationClient, IDisposable
+    public class AudioDeviceManager : IDisposable
     {
-        private readonly IMMDeviceEnumerator _deviceEnumerator = (IMMDeviceEnumerator)new MMDeviceEnumerator();
-        private readonly SynchronizationContext _synchronizationContext;
-
+        private AudioDeviceManagerApi _audioDeviceManager;
         public AudioDeviceManager()
         {
-            _synchronizationContext = SynchronizationContext.Current;
-
-            int hr = _deviceEnumerator.RegisterEndpointNotificationCallback(this);
-            if (hr != HResult.OK)
-                throw Marshal.GetExceptionForHR(hr);
+            _audioDeviceManager = new AudioDeviceManagerApi();
         }
 
-        public event EventHandler<AudioDeviceEventArgs> DeviceAdded;
-        public event EventHandler<AudioDeviceRemovedEventArgs> DeviceRemoved;
-        public event EventHandler<AudioDeviceEventArgs> DevicePropertyChanged;
-        public event EventHandler<DefaultAudioDeviceEventArgs> DefaultDeviceChanged;
-        public event EventHandler<AudioDeviceStateEventArgs> DeviceStateChanged;
+        public event EventHandler<AudioDeviceEventArgs> DeviceAdded
+        {
+            add { _audioDeviceManager.DeviceAdded += value; }
+            remove { _audioDeviceManager.DeviceAdded -= value; }
+        }
+        public event EventHandler<AudioDeviceRemovedEventArgs> DeviceRemoved
+        {
+            add { _audioDeviceManager.DeviceRemoved += value; }
+            remove { _audioDeviceManager.DeviceRemoved -= value; }
+        }
+        public event EventHandler<AudioDeviceEventArgs> DevicePropertyChanged
+        {
+            add { _audioDeviceManager.DevicePropertyChanged += value; }
+            remove { _audioDeviceManager.DevicePropertyChanged -= value; }
+        }
+        public event EventHandler<DefaultAudioDeviceEventArgs> DefaultDeviceChanged
+        {
+            add { _audioDeviceManager.DefaultDeviceChanged += value; }
+            remove { _audioDeviceManager.DefaultDeviceChanged -= value; }
+        }
+        public event EventHandler<AudioDeviceStateEventArgs> DeviceStateChanged
+        {
+            add { _audioDeviceManager.DeviceStateChanged += value; }
+            remove { _audioDeviceManager.DeviceStateChanged -= value; }
+        }
 
         public AudioDeviceCollection GetAudioDevices(AudioDeviceKind kind, AudioDeviceState state)
         {
-            IMMDeviceCollection underlyingCollection;
-            int hr = _deviceEnumerator.EnumAudioEndpoints(kind, state, out underlyingCollection);
-            if (hr == HResult.OK)
-                return new AudioDeviceCollection(underlyingCollection);
-
-            throw Marshal.GetExceptionForHR(hr);
+            return _audioDeviceManager.GetAudioDevices(kind, state);
         }
 
         public void SetDefaultAudioDevice(AudioDevice device)
         {
-            if (device == null)
-                throw new ArgumentNullException("device");
-
-            SetDefaultAudioDevice(device, AudioDeviceRole.Multimedia);
-            SetDefaultAudioDevice(device, AudioDeviceRole.Communications);
-            SetDefaultAudioDevice(device, AudioDeviceRole.Console);
+            _audioDeviceManager.SetDefaultAudioDevice(device);
         }
 
         public void SetDefaultAudioDevice(AudioDevice device, AudioDeviceRole role)
         {
-            if (device == null)
-                throw new ArgumentNullException("device");
-
-            // BADNESS: The following code uses undocumented interfaces provided by the Audio SDK. This is completely
-            // unsupported, and should be used for amusement purposes only. This is *extremely likely* to be broken 
-            // in future updates and/or versions of Windows. If Larry Osterman was dead, he would be rolling over 
-            // in his grave if he knew you were using this for nefarious purposes.
-            var config = new PolicyConfig();
-
-            int hr;
-            IPolicyConfig2 config2 = config as IPolicyConfig2;
-            if (config2 != null)
-            {   // Windows 7 -> Windows 8.1
-                hr = config2.SetDefaultEndpoint(device.Id, role);
-            }
-            else
-            {   // Windows 10+
-                hr = ((IPolicyConfig3)config).SetDefaultEndpoint(device.Id, role);
-            }
-
-            if (hr != HResult.OK)
-                throw Marshal.GetExceptionForHR(hr);
+            _audioDeviceManager.SetDefaultAudioDevice(device, role);
         }
 
         public bool IsDefaultAudioDevice(AudioDevice device, AudioDeviceRole role)
         {
-            if (device == null)
-                throw new ArgumentNullException("device");
-
-            AudioDevice defaultDevice = GetDefaultAudioDevice(device.Kind, role);
-            if (defaultDevice == null)
-                return false;
-
-            return String.Equals(defaultDevice.Id, device.Id, StringComparison.OrdinalIgnoreCase);
+            return _audioDeviceManager.IsDefaultAudioDevice(device, role);
         }
 
         public AudioDevice GetDefaultAudioDevice(AudioDeviceKind kind, AudioDeviceRole role)
         {
-            IMMDevice underlyingDevice;
-            int hr = _deviceEnumerator.GetDefaultAudioEndpoint(kind, role, out underlyingDevice);
-            if (hr == HResult.OK)
-                return new AudioDevice(underlyingDevice);
-
-            if (hr == HResult.NotFound || hr == HResult.FileNotFound)   // See #33
-                return null;
-
-            throw Marshal.GetExceptionForHR(hr);
+            return _audioDeviceManager.GetDefaultAudioDevice(kind, role);
         }
 
         public AudioDevice GetDevice(string id)
         {
-            if (id == null)
-                throw new ArgumentNullException("id");
-
-            IMMDevice underlyingDevice;
-            int hr = _deviceEnumerator.GetDevice(id, out underlyingDevice);
-            if (hr == HResult.OK)
-                return new AudioDevice(underlyingDevice);
-
-            if (hr == HResult.NotFound)
-                return null;
-
-            throw Marshal.GetExceptionForHR(hr);
-        }
-
-        void IMMNotificationClient.OnDeviceStateChanged(string deviceId, AudioDeviceState newState)
-        {
-            InvokeOnSynchronizationContext(() =>
-            {
-                var handler = DeviceStateChanged;
-                if (handler != null)
-                {
-                    AudioDevice device = GetDevice(deviceId);
-                    if (device == null)
-                        return;     // Device was already removed by the time we got here
-
-                    handler(this, new AudioDeviceStateEventArgs(device, newState));
-                }
-            });
-        }
-
-        void IMMNotificationClient.OnDeviceAdded(string deviceId)
-        {
-            InvokeOnSynchronizationContext(() =>
-            {
-                var handler = DeviceAdded;
-                if (handler != null)
-                {
-                    AudioDevice device = GetDevice(deviceId);
-                    if (device == null)
-                        return;     // Device was already removed by the time we got here
-
-                    handler(this, new AudioDeviceEventArgs(device));
-                }
-            });
-        }
-
-        void IMMNotificationClient.OnDeviceRemoved(string deviceId)
-        {
-            InvokeOnSynchronizationContext(() =>
-            {
-                var handler = DeviceRemoved;
-                if (handler != null)
-                {
-                    handler(this, new AudioDeviceRemovedEventArgs(deviceId));
-                }
-            });
-        }
-
-        void IMMNotificationClient.OnDefaultDeviceChanged(AudioDeviceKind kind, AudioDeviceRole role, string deviceId)
-        {
-            InvokeOnSynchronizationContext(() =>
-            {
-                var handler = DefaultDeviceChanged;
-                if (handler != null)
-                {
-                    AudioDevice device = null;
-                    if (deviceId != null)
-                        device = GetDevice(deviceId);
-                    
-                    handler(this, new DefaultAudioDeviceEventArgs(device, kind, role));
-                }
-            });
-        }
-
-        void IMMNotificationClient.OnPropertyValueChanged(string deviceId, PropertyKey key)
-        {
-            InvokeOnSynchronizationContext(() =>
-            {
-                var handler = DevicePropertyChanged;
-                if (handler != null)
-                {
-                    AudioDevice device = GetDevice(deviceId);
-                    if (device == null)
-                        return;     // Device was already removed by the time I got here
-
-                    handler(this, new AudioDeviceEventArgs(device));
-                }
-            });
+            return _audioDeviceManager.GetDevice(id);
         }
 
         public void Dispose()
         {
-            int hr = _deviceEnumerator.UnregisterEndpointNotificationCallback(this);
-            if (hr != HResult.OK)
-                throw Marshal.GetExceptionForHR(hr);
-        }
-
-        private void InvokeOnSynchronizationContext(Action action)
-        {
-            if (_synchronizationContext == null)
-            {
-                action();
-            }
-            else
-            {
-                _synchronizationContext.Post(state => { action(); }, null);
-            }
+            _audioDeviceManager.Dispose();
         }
     }
 }

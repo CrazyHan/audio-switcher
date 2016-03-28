@@ -6,7 +6,7 @@ using AudioSwitcher.Audio;
 
 namespace AudioSwitcher.Audio
 {
-    internal class AudioDeviceRemovedEventArgs : EventArgs
+    public class AudioDeviceRemovedEventArgs : EventArgs
     {
         private readonly string _deviceId;
 

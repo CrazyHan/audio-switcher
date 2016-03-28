@@ -34,7 +34,7 @@ namespace AudioSwitcher.Audio
     /// <summary>
     /// Property Store class, only supports reading properties at the moment.
     /// </summary>
-    internal class PropertyStore
+    public class PropertyStore
     {
         private readonly IPropertyStore _underlyingStore;
 

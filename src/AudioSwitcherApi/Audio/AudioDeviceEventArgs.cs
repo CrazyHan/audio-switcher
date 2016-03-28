@@ -5,7 +5,7 @@ using System;
 
 namespace AudioSwitcher.Audio
 {
-    internal class AudioDeviceEventArgs : EventArgs
+    public class AudioDeviceEventArgs : EventArgs
     {
         private readonly AudioDevice _device;
 
