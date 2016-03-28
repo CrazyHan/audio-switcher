@@ -14,10 +14,10 @@ namespace AudioSwitcher.UI.Commands
     [Command(CommandId.SetAsDefaultDevice, IsReusable=false)]
     internal class AudioDeviceCommand : Command<AudioDeviceViewModel>
     {
-        private readonly AudioDeviceManager _deviceManager;
+        private readonly AudioDeviceManagerFacade _deviceManager;
 
         [ImportingConstructor]
-        public AudioDeviceCommand(AudioDeviceManager deviceManager)
+        public AudioDeviceCommand(AudioDeviceManagerFacade deviceManager)
         {
             _deviceManager = deviceManager;
         }

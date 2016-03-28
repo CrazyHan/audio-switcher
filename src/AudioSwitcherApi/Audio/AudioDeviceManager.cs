@@ -31,12 +31,12 @@ using AudioSwitcher.Interop;
 
 namespace AudioSwitcher.Audio
 {
-    public class AudioDeviceManagerApi : IMMNotificationClient, IDisposable
+    public class AudioDeviceManager : IMMNotificationClient, IDisposable
     {
         private readonly IMMDeviceEnumerator _deviceEnumerator = (IMMDeviceEnumerator)new MMDeviceEnumerator();
         private readonly SynchronizationContext _synchronizationContext;
 
-        public AudioDeviceManagerApi()
+        public AudioDeviceManager()
         {
             _synchronizationContext = SynchronizationContext.Current;
 

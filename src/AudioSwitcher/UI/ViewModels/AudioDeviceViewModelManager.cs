@@ -14,11 +14,11 @@ namespace AudioSwitcher.UI.ViewModels
     [Export(typeof(AudioDeviceViewModelManager))]
     internal class AudioDeviceViewModelManager : IDisposable
     {
-        private readonly AudioDeviceManager _deviceManager;
+        private readonly AudioDeviceManagerFacade _deviceManager;
         private readonly AudioDeviceViewModelCollection _viewModels = new AudioDeviceViewModelCollection();
 
         [ImportingConstructor]
-        public AudioDeviceViewModelManager(AudioDeviceManager deviceManager)
+        public AudioDeviceViewModelManager(AudioDeviceManagerFacade deviceManager)
         {
             _deviceManager = deviceManager;
             

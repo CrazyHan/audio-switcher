@@ -12,10 +12,10 @@ namespace AudioSwitcher.Audio
     [StartupService]
     internal class InputSwitcherService : IStartupService, IDisposable
     {
-        private readonly AudioDeviceManager _manager;
+        private readonly AudioDeviceManagerFacade _manager;
 
         [ImportingConstructor]
-        public InputSwitcherService(AudioDeviceManager manager)
+        public InputSwitcherService(AudioDeviceManagerFacade manager)
         {
             _manager = manager;
         }

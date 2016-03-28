@@ -12,7 +12,7 @@ namespace AudioSwitcher.UI.Commands
     internal class SetAsDefaultCommunicationDeviceCommand : SetAsDefaultDeviceCommandBase
     {
         [ImportingConstructor]
-        public SetAsDefaultCommunicationDeviceCommand(AudioDeviceManager manager)
+        public SetAsDefaultCommunicationDeviceCommand(AudioDeviceManagerFacade manager)
             : base(manager, AudioDeviceRole.Communications)
         {
             Text = Resources.SetAsDefaultComunicationDevice;

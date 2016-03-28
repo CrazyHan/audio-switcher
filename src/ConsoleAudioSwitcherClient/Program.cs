@@ -10,7 +10,7 @@ namespace ConsoleAudioSwitcherClient
 	{
 		static void Main(string[] args)
 		{
-			AudioSwitcher.Audio.AudioDeviceManagerApi api = new AudioSwitcher.Audio.AudioDeviceManagerApi();
+			AudioSwitcher.Audio.AudioDeviceManager api = new AudioSwitcher.Audio.AudioDeviceManager();
 			var audioDevices = api.GetAudioDevices(AudioSwitcher.Audio.AudioDeviceKind.All, AudioSwitcher.Audio.AudioDeviceState.All);
 			var defaultCommunicationDevice = api.GetDefaultAudioDevice(AudioSwitcher.Audio.AudioDeviceKind.Playback, AudioSwitcher.Audio.AudioDeviceRole.Communications);
 			var defaultConsoleDevice = api.GetDefaultAudioDevice(AudioSwitcher.Audio.AudioDeviceKind.Playback, AudioSwitcher.Audio.AudioDeviceRole.Console);

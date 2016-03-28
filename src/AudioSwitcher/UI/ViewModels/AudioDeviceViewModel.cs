@@ -74,7 +74,7 @@ namespace AudioSwitcher.UI.ViewModels
             private set;
         }
 
-        public void UpdateStatus(AudioDeviceManager deviceManager)
+        public void UpdateStatus(AudioDeviceManagerFacade deviceManager)
         {
             DefaultState = CalculateDeviceDefaultState(deviceManager);
             Kind = _device.Kind;
@@ -247,7 +247,7 @@ namespace AudioSwitcher.UI.ViewModels
             return null;
         }
 
-        private AudioDeviceDefaultState CalculateDeviceDefaultState(AudioDeviceManager deviceManager)
+        private AudioDeviceDefaultState CalculateDeviceDefaultState(AudioDeviceManagerFacade deviceManager)
         {
             AudioDeviceDefaultState state = AudioDeviceDefaultState.None;
 

@@ -86,7 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationModel\StartupServiceAttribute.cs" />
-    <Compile Include="Audio\AudioDeviceManager.cs" />
+    <Compile Include="Audio\AudioDeviceManagerFacade.cs" />
     <Compile Include="Audio\InputSwitcherService.cs" />
     <Compile Include="ComponentModel\ILifetime`2.cs" />
     <Compile Include="ComponentModel\ILifetime.cs" />

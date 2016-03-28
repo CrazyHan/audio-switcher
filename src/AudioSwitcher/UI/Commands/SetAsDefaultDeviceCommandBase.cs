@@ -12,10 +12,10 @@ namespace AudioSwitcher.UI.Commands
 {
     internal abstract class SetAsDefaultDeviceCommandBase : Command<AudioDeviceViewModel>
     {
-        private readonly AudioDeviceManager _manager;
+        private readonly AudioDeviceManagerFacade _manager;
         private readonly AudioDeviceRole _role;
 
-        protected SetAsDefaultDeviceCommandBase(AudioDeviceManager manager, AudioDeviceRole role)
+        protected SetAsDefaultDeviceCommandBase(AudioDeviceManagerFacade manager, AudioDeviceRole role)
         {
             _manager = manager;
             _role = role;

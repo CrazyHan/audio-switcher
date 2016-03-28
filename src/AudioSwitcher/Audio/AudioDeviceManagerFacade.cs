@@ -32,13 +32,13 @@ using AudioSwitcher.Interop;
 
 namespace AudioSwitcher.Audio
 {
-    [Export(typeof(AudioDeviceManager))]
-    public class AudioDeviceManager : IDisposable
+    [Export(typeof(AudioDeviceManagerFacade))]
+    public class AudioDeviceManagerFacade : IDisposable
     {
-        private AudioDeviceManagerApi _audioDeviceManager;
-        public AudioDeviceManager()
+        private AudioDeviceManager _audioDeviceManager;
+        public AudioDeviceManagerFacade()
         {
-            _audioDeviceManager = new AudioDeviceManagerApi();
+            _audioDeviceManager = new AudioDeviceManager();
         }
 
         public event EventHandler<AudioDeviceEventArgs> DeviceAdded
