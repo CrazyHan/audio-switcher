@@ -111,6 +111,10 @@ namespace AudioSwitcher.Audio
 
         public AudioDevice GetDefaultAudioDevice(AudioDeviceKind kind, AudioDeviceRole role)
         {
+            if (kind == AudioDeviceKind.All)
+            {
+                throw new ArgumentException("You must specify a kind of device.", "kind");
+            }
             IMMDevice underlyingDevice;
             int hr = _deviceEnumerator.GetDefaultAudioEndpoint(kind, role, out underlyingDevice);
             if (hr == HResult.OK)

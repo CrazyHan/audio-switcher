@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{44D8C1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioSwitcherApi", "AudioSwitcherApi\AudioSwitcherApi.csproj", "{5A31FBA5-0BFE-4845-8730-98636542C546}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAudioSwitcherClient", "ConsoleAudioSwitcherClient\ConsoleAudioSwitcherClient.csproj", "{EFB344E5-2F2C-49FE-8884-0FD065BDAB2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -26,6 +28,10 @@ Global
 		{5A31FBA5-0BFE-4845-8730-98636542C546}.Debug|x86.Build.0 = Debug|x86
 		{5A31FBA5-0BFE-4845-8730-98636542C546}.Release|x86.ActiveCfg = Release|x86
 		{5A31FBA5-0BFE-4845-8730-98636542C546}.Release|x86.Build.0 = Release|x86
+		{EFB344E5-2F2C-49FE-8884-0FD065BDAB2C}.Debug|x86.ActiveCfg = Debug|x86
+		{EFB344E5-2F2C-49FE-8884-0FD065BDAB2C}.Debug|x86.Build.0 = Debug|x86
+		{EFB344E5-2F2C-49FE-8884-0FD065BDAB2C}.Release|x86.ActiveCfg = Release|x86
+		{EFB344E5-2F2C-49FE-8884-0FD065BDAB2C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
