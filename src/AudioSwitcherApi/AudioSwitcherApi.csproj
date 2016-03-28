@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,8 +71,23 @@
     <Compile Include="Audio\Interop\MMAudio\PropertyStoreProperty.cs" />
     <Compile Include="Audio\Interop\MMAudio\PropVariant.cs" />
     <Compile Include="Audio\Interop\MMAudio\StorageAccessMode.cs" />
+    <Compile Include="Drawing\IconExtractor.cs" />
+    <Compile Include="Drawing\IconInfo.cs" />
+    <Compile Include="Drawing\Interop\DllImports.cs" />
+    <Compile Include="Drawing\Interop\EnumResNameProc.cs" />
+    <Compile Include="Drawing\Interop\GroupIconDir.cs" />
+    <Compile Include="Drawing\Interop\GroupIconDirEntry.cs" />
+    <Compile Include="Drawing\Interop\IconDir.cs" />
+    <Compile Include="Drawing\Interop\IconDirEntry.cs" />
+    <Compile Include="Drawing\Interop\LoadLibraryExFlags.cs" />
+    <Compile Include="Drawing\Interop\LookupIconIdFromDirectoryExFlags.cs" />
+    <Compile Include="Drawing\Interop\ResourceTypes.cs" />
+    <Compile Include="Drawing\Interop\SafeModuleHandle.cs" />
+    <Compile Include="Drawing\ResourceName.cs" />
+    <Compile Include="Drawing\ShellIcon.cs" />
     <Compile Include="Interop\ExternalDll.cs" />
     <Compile Include="Interop\HResult.cs" />
+    <Compile Include="IO\StreamExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,7 +10,6 @@ using System.IO;
 using System.Runtime.InteropServices;
 using AudioSwitcher.IO;
 using AudioSwitcher.Presentation.Drawing.Interop;
-using AudioSwitcher.Win32.InteropServices;
 
 namespace AudioSwitcher.Presentation.Drawing
 {
@@ -252,6 +251,30 @@ namespace AudioSwitcher.Presentation.Drawing
             if (disposing)
             {
                 _moduleHandle.Dispose();
+            }
+        }
+    }
+
+    [Obsolete("All calls to this class should ideally use Marshal.ThrowExceptionForHR() or Marshal.GetExceptionForHR().")]
+    internal static class Win32Marshal
+    {
+        private const int ERROR_FILE_NOT_FOUND = 2;
+        private const int ERROR_BAD_EXE_FORMAT = 193;
+
+        public static Exception GetExceptionForLastWin32Error(string fileName)
+        {
+            int errorCode = Marshal.GetLastWin32Error();
+
+            switch (errorCode)
+            {
+                case ERROR_FILE_NOT_FOUND:
+                    throw new FileNotFoundException(null, fileName);
+
+                case ERROR_BAD_EXE_FORMAT:
+                    throw new BadImageFormatException();
+
+                default:
+                    throw new Win32Exception(errorCode);
             }
         }
     }

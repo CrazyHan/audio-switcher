@@ -92,7 +92,7 @@
     <Compile Include="ComponentModel\ILifetime`2.cs" />
     <Compile Include="ComponentModel\ILifetime.cs" />
     <Compile Include="ComponentModel\IPriorityMetadata.cs" />
-    <Compile Include="IO\StreamExtensions.cs" />
+    <Compile Include="Presentation\Drawing\DrawingServices.cs" />
     <Compile Include="Presentation\IPresenter.cs" />
     <Compile Include="Presentation\NonModalPresenter.cs" />
     <Compile Include="Presentation\PresenterAttribute.cs" />
@@ -136,21 +136,6 @@
     <Compile Include="UI\Commands\ShowNotPresentDevicesCommand.cs" />
     <Compile Include="Presentation\CommandModel\ICommand.cs" />
     <Compile Include="Presentation\CommandModel\ICommandMetadata.cs" />
-    <Compile Include="Presentation\Drawing\DrawingServices.cs" />
-    <Compile Include="Presentation\Drawing\IconExtractor.cs" />
-    <Compile Include="Presentation\Drawing\IconInfo.cs" />
-    <Compile Include="Presentation\Drawing\Interop\DllImports.cs" />
-    <Compile Include="Presentation\Drawing\Interop\EnumResNameProc.cs" />
-    <Compile Include="Presentation\Drawing\Interop\GroupIconDir.cs" />
-    <Compile Include="Presentation\Drawing\Interop\GroupIconDirEntry.cs" />
-    <Compile Include="Presentation\Drawing\Interop\IconDirEntry.cs" />
-    <Compile Include="Presentation\Drawing\Interop\IconDir.cs" />
-    <Compile Include="Presentation\Drawing\Interop\LoadLibraryExFlags.cs" />
-    <Compile Include="Presentation\Drawing\Interop\LookupIconIdFromDirectoryExFlags.cs" />
-    <Compile Include="Presentation\Drawing\Interop\ResourceTypes.cs" />
-    <Compile Include="Presentation\Drawing\Interop\SafeModuleHandle.cs" />
-    <Compile Include="Presentation\Drawing\ResourceName.cs" />
-    <Compile Include="Presentation\Drawing\ShellIcon.cs" />
     <Compile Include="Presentation\UI\AudioContextMenuStrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -185,7 +170,6 @@
     <Compile Include="UI\Views\DeviceFlyoutView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Win32\InteropServices\Win32Marshal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Resources\Resources.Designer.cs">
