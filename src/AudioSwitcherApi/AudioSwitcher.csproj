@@ -7,8 +7,8 @@
     <ProjectGuid>{5A31FBA5-0BFE-4845-8730-98636542C546}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AudioSwitcherApi</RootNamespace>
-    <AssemblyName>AudioSwitcherApi</AssemblyName>
+    <RootNamespace>AudioSwitcher</RootNamespace>
+    <AssemblyName>AudioSwitcher</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

@@ -52,9 +52,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioSwitcherApi\AudioSwitcherApi.csproj">
+    <ProjectReference Include="..\AudioSwitcherApi\AudioSwitcher.csproj">
       <Project>{5a31fba5-0bfe-4845-8730-98636542c546}</Project>
-      <Name>AudioSwitcherApi</Name>
+      <Name>AudioSwitcher</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -39,7 +39,7 @@ namespace AudioSwitcher {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AudioSwitcherApi.Resources.Icons", typeof(Icons).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AudioSwitcher.Resources.Icons", typeof(Icons).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
